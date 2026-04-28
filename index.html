@@ -91,21 +91,21 @@
 .skill-list li .arrow { font-family: 'Fira Code', monospace; font-weight: 600; flex-shrink: 0; }
 
 /* 6. Flow diagram */
-.flow-row { display: flex; align-items: center; justify-content: center; gap: 0; margin: 24px 0 12px; }
-.flow-box { padding: 14px 16px; text-align: center; min-width: 110px; flex-shrink: 0; }
-.flow-box .flow-label { font-family: 'Fira Code', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.05em; }
-.flow-box .flow-sub { font-family: 'Karla', sans-serif; font-size: 10px; margin-top: 4px; opacity: 0.6; }
-.flow-arrow { width: 28px; height: 1px; background: var(--text-secondary); position: relative; flex-shrink: 0; }
-.flow-arrow::after { content: ''; position: absolute; right: 0; top: -3px; border: solid var(--text-secondary); border-width: 0 1px 1px 0; padding: 3px; transform: rotate(-45deg); }
+.flow-row { display: flex; align-items: center; justify-content: center; gap: 0; margin: 32px 0 20px; }
+.flow-box { padding: 20px 20px; text-align: center; min-width: 130px; flex-shrink: 0; }
+.flow-box .flow-label { font-family: 'Fira Code', monospace; font-size: 15px; font-weight: 600; letter-spacing: 0.05em; }
+.flow-box .flow-sub { font-family: 'Karla', sans-serif; font-size: 12px; margin-top: 6px; opacity: 0.7; }
+.flow-arrow { width: 32px; height: 2px; background: var(--accent); position: relative; flex-shrink: 0; }
+.flow-arrow::after { content: ''; position: absolute; right: 0; top: -4px; border: solid var(--accent); border-width: 0 2px 2px 0; padding: 4px; transform: rotate(-45deg); }
 .flow-user { background: var(--card-02); color: var(--black); }
 .flow-accent { background: var(--accent); color: #fff; }
 .flow-dark { background: var(--gray-700); color: #fff; }
-.flow-access { text-align: center; margin-top: 8px; }
-.flow-access-label { font-family: 'Fira Code', monospace; font-size: 10px; color: var(--text-secondary); letter-spacing: 0.1em; text-transform: uppercase; }
-.flow-access-items { font-family: 'Fira Code', monospace; font-size: 11px; color: var(--card-02); margin-top: 2px; }
-.flow-dashed { width: 1px; height: 18px; border-left: 1px dashed var(--text-secondary); margin: 0 auto; }
-.summary-bar { background: var(--gray-800); padding: 16px 24px; margin-top: auto; }
-.summary-bar span { font-family: 'Karla', sans-serif; font-size: 13px; color: var(--card-02); line-height: 1.6; }
+.flow-access { text-align: center; margin-top: 16px; }
+.flow-access-label { font-family: 'Fira Code', monospace; font-size: 12px; color: var(--text-secondary); letter-spacing: 0.1em; text-transform: uppercase; }
+.flow-access-items { font-family: 'Fira Code', monospace; font-size: 14px; color: var(--card-02); margin-top: 4px; }
+.flow-dashed { width: 2px; height: 24px; border-left: 2px dashed var(--accent); margin: 0 auto; }
+.summary-bar { background: rgba(31,41,55,0.85); padding: 20px 28px; margin-top: auto; }
+.summary-bar span { font-family: 'Karla', sans-serif; font-size: 16px; color: var(--card-02); line-height: 1.6; }
 
 /* 7. Confusion table */
 .confusion-grid { display: flex; flex-direction: column; gap: 8px; margin-top: 20px; }
@@ -309,18 +309,18 @@ function renderOverview(s) {
     return i < s.flowSteps.length - 1 ? box + '<div class="flow-arrow"></div>' : box;
   }).join('');
 
-  const bgAttr = s.illustration ? `data-background-image="${s.illustration}" data-background-size="cover" data-background-color="#171B20" data-background-opacity="0.2"` : '';
+  const bgAttr = s.illustration ? `data-background-image="${s.illustration}" data-background-size="cover" data-background-color="#171B20" data-background-opacity="0.1"` : '';
   return `<section class="slide-dark" ${bgAttr}>
-    <div style="position:relative;z-index:1;display:flex;flex-direction:column;height:100%;">
+    <div style="position:relative;z-index:1;display:flex;flex-direction:column;height:100%;justify-content:center;">
       <div class="eyebrow">${s.eyebrow}</div>
-      <h2 style="font-size:32px;color:#fff;margin-top:8px;margin-bottom:8px;">${s.heading}</h2>
+      <h2 style="font-size:40px;color:#fff;margin-top:8px;margin-bottom:0;">${s.heading}</h2>
       <div class="flow-row">${boxes}</div>
       <div class="flow-access">
         <div class="flow-dashed"></div>
         <div class="flow-access-label">${s.accessLabel}</div>
         <div class="flow-access-items">${s.accessItems}</div>
       </div>
-      <div class="summary-bar"><span>${s.summary}</span></div>
+      <div class="summary-bar" style="margin-top:32px;"><span>${s.summary}</span></div>
     </div>
   </section>`;
 }
