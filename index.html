@@ -57,6 +57,7 @@
 
 /* 4. Slide types */
 .slide-dark { background-color: var(--black) !important; color: #FFFFFF; }
+.slide-dark[data-background-image] { background-color: transparent !important; }
 .slide-dark .eyebrow { color: var(--text-secondary); }
 .slide-dark .term-title { color: #FFFFFF; }
 .slide-light { background: var(--page-bg) !important; color: var(--text-primary); }
@@ -201,7 +202,7 @@ function renderCallout(c) {
 }
 
 function renderTitle(s) {
-  const bgAttr = s.illustration ? `data-background-image="${s.illustration}" data-background-size="cover" data-background-color="#171B20"` : '';
+  const bgAttr = s.illustration ? `data-background-image="${s.illustration}" data-background-size="cover" data-background-color="#171B20" data-background-opacity="0.2"` : '';
   return `<section class="slide-dark" ${bgAttr}><div style="position:relative;z-index:1;">
     <div class="eyebrow" style="display:flex;align-items:center;gap:8px;">${LOGO} ${s.eyebrow}</div>
     <h1 class="title-heading" style="margin-top:8px;">${s.heading}</h1>
@@ -288,7 +289,7 @@ function renderPrompt(s, meta) {
 }
 
 function renderSectionDivider(s) {
-  const bgAttr = s.illustration ? `data-background-image="${s.illustration}" data-background-size="cover" data-background-color="#171B20"` : '';
+  const bgAttr = s.illustration ? `data-background-image="${s.illustration}" data-background-size="cover" data-background-color="#171B20" data-background-opacity="0.2"` : '';
   return `<section class="slide-dark section-divider" ${bgAttr}>
     <div style="position:relative;z-index:1;">
       <div class="section-number">${s.number}</div>
@@ -308,17 +309,19 @@ function renderOverview(s) {
     return i < s.flowSteps.length - 1 ? box + '<div class="flow-arrow"></div>' : box;
   }).join('');
 
-  const bgAttr = s.illustration ? `data-background-image="${s.illustration}" data-background-size="cover" data-background-color="#171B20"` : '';
+  const bgAttr = s.illustration ? `data-background-image="${s.illustration}" data-background-size="cover" data-background-color="#171B20" data-background-opacity="0.2"` : '';
   return `<section class="slide-dark" ${bgAttr}>
-    <div class="eyebrow">${s.eyebrow}</div>
-    <h2 style="font-size:32px;color:#fff;margin-top:8px;margin-bottom:8px;">${s.heading}</h2>
-    <div class="flow-row">${boxes}</div>
-    <div class="flow-access">
-      <div class="flow-dashed"></div>
-      <div class="flow-access-label">${s.accessLabel}</div>
-      <div class="flow-access-items">${s.accessItems}</div>
+    <div style="position:relative;z-index:1;display:flex;flex-direction:column;height:100%;">
+      <div class="eyebrow">${s.eyebrow}</div>
+      <h2 style="font-size:32px;color:#fff;margin-top:8px;margin-bottom:8px;">${s.heading}</h2>
+      <div class="flow-row">${boxes}</div>
+      <div class="flow-access">
+        <div class="flow-dashed"></div>
+        <div class="flow-access-label">${s.accessLabel}</div>
+        <div class="flow-access-items">${s.accessItems}</div>
+      </div>
+      <div class="summary-bar"><span>${s.summary}</span></div>
     </div>
-    <div class="summary-bar"><span>${s.summary}</span></div>
   </section>`;
 }
 
@@ -329,11 +332,13 @@ function renderConfusions(s) {
     <div class="right-box"><span>${r.right}</span></div>
   </div>`).join('');
 
-  const bgAttr = s.illustration ? `data-background-image="${s.illustration}" data-background-size="cover" data-background-color="#171B20"` : '';
+  const bgAttr = s.illustration ? `data-background-image="${s.illustration}" data-background-size="cover" data-background-color="#171B20" data-background-opacity="0.2"` : '';
   return `<section class="slide-dark" ${bgAttr}>
-    <div class="eyebrow">${s.eyebrow}</div>
-    <h2 style="font-size:32px;color:#fff;margin-top:8px;">${s.heading}</h2>
-    <div class="confusion-grid">${rows}</div>
+    <div style="position:relative;z-index:1;">
+      <div class="eyebrow">${s.eyebrow}</div>
+      <h2 style="font-size:32px;color:#fff;margin-top:8px;">${s.heading}</h2>
+      <div class="confusion-grid">${rows}</div>
+    </div>
   </section>`;
 }
 
