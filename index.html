@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forstå AI-sproget — Fruity AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+<style>
+/* 1. Reset & Reveal overrides */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.reveal, .reveal * { border-radius: 0 !important; }
+.reveal { font-family: 'Karla', sans-serif; font-size: 16px; color: var(--text-primary); }
+.reveal .slides { text-align: left; }
+.reveal .slides section { padding: 48px 64px; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+.reveal .controls { color: var(--accent); }
+.reveal .progress span { background: var(--accent); }
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 { font-family: 'Karla', sans-serif; font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; text-transform: none; }
+.reveal p, .reveal li { font-weight: 400; line-height: 1.6; }
+
+/* 2. Design tokens */
+:root {
+  --black:          #171B20;
+  --text-primary:   #171B20;
+  --text-secondary: #656462;
+  --background:     #FFFFFF;
+  --card:           #FFFFFF;
+  --card-02:        #DEDED5;
+  --accent:         #800080;
+  --primary:        #171B20;
+  --page-bg:        #FAF7F2;
+  --light-card:     #F3EDE3;
+  --rule:           rgba(23,27,32,0.12);
+  --danger-bg:      #FEE2E2;
+  --danger-text:    #991B1B;
+  --warning-bg:     #FEF9C3;
+  --warning-text:   #854D0E;
+  --success-bg:     #DCFCE7;
+  --success-text:   #166534;
+  --gray-50:        #F9FAFB;
+  --gray-100:       #F3F4F6;
+  --gray-200:       #E5E7EB;
+  --gray-300:       #D1D5DB;
+  --gray-500:       #6B7280;
+  --gray-700:       #374151;
+  --gray-800:       #1F2937;
+}
+
+/* 3. Typography */
+.eyebrow { font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-secondary); margin-bottom: 12px; }
+.eyebrow-purple { color: var(--accent); }
+.term-title { font-family: 'Karla', sans-serif; font-size: 36px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.03em; line-height: 1.05; }
+.term-subtitle { font-family: 'Fira Code', monospace; font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+.body-text { font-family: 'Karla', sans-serif; font-size: 18px; font-weight: 400; line-height: 1.6; color: var(--text-primary); }
+
+/* 4. Slide types */
+.slide-dark { background-color: var(--black) !important; color: #FFFFFF; }
+.slide-dark .eyebrow { color: var(--text-secondary); }
+.slide-dark .term-title { color: #FFFFFF; }
+.slide-light { background: var(--page-bg) !important; color: var(--text-primary); }
+
+/* 5. Cards */
+.card { background: var(--card); border: 1px solid var(--rule); border-left: 4px solid var(--accent); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); padding: 28px; }
+.card-danger { background: var(--danger-bg); padding: 24px; }
+.card-danger .card-label { color: var(--danger-text); font-family: 'Fira Code', monospace; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 10px; }
+.card-danger .card-body { color: var(--danger-text); font-size: 14px; line-height: 1.6; }
+.card-warning { background: var(--warning-bg); padding: 24px; }
+.card-warning .card-label { color: var(--warning-text); font-family: 'Fira Code', monospace; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 10px; }
+.card-warning .card-body { color: var(--warning-text); font-size: 14px; line-height: 1.6; }
+.card-success { background: var(--success-bg); padding: 24px; }
+.card-success .card-label { color: var(--success-text); font-family: 'Fira Code', monospace; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 10px; }
+.card-success .card-body { color: var(--success-text); font-size: 14px; line-height: 1.6; }
+.card-code { background: var(--black); padding: 16px 20px; margin-top: 14px; }
+.card-code code { font-family: 'Fira Code', monospace; font-size: 13px; color: #4ADE80; }
+.insight-bar { background: var(--light-card); border: 1px solid var(--rule); padding: 14px 20px; display: flex; align-items: flex-start; gap: 10px; margin-top: 24px; }
+.insight-bar span { font-family: 'Karla', sans-serif; font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+.insight-icon { flex-shrink: 0; font-size: 14px; line-height: 1.5; }
+
+/* Tool cards */
+.tool-stack { display: flex; flex-direction: column; gap: 10px; }
+.tool-card { background: var(--gray-100); padding: 14px 18px; }
+.tool-card .tool-name { font-family: 'Fira Code', monospace; font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+.tool-card .tool-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
+
+/* Skill list */
+.skill-list { list-style: none; padding: 0; margin: 0; }
+.skill-list li { font-size: 14px; color: var(--success-text); padding: 5px 0; display: flex; align-items: center; gap: 8px; }
+.skill-list li .arrow { font-family: 'Fira Code', monospace; font-weight: 600; flex-shrink: 0; }
+
+/* 6. Flow diagram */
+.flow-row { display: flex; align-items: center; justify-content: center; gap: 0; margin: 24px 0 12px; }
+.flow-box { padding: 14px 16px; text-align: center; min-width: 110px; flex-shrink: 0; }
+.flow-box .flow-label { font-family: 'Fira Code', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.05em; }
+.flow-box .flow-sub { font-family: 'Karla', sans-serif; font-size: 10px; margin-top: 4px; opacity: 0.6; }
+.flow-arrow { width: 28px; height: 1px; background: var(--text-secondary); position: relative; flex-shrink: 0; }
+.flow-arrow::after { content: ''; position: absolute; right: 0; top: -3px; border: solid var(--text-secondary); border-width: 0 1px 1px 0; padding: 3px; transform: rotate(-45deg); }
+.flow-user { background: var(--card-02); color: var(--black); }
+.flow-accent { background: var(--accent); color: #fff; }
+.flow-dark { background: var(--gray-700); color: #fff; }
+.flow-access { text-align: center; margin-top: 8px; }
+.flow-access-label { font-family: 'Fira Code', monospace; font-size: 10px; color: var(--text-secondary); letter-spacing: 0.1em; text-transform: uppercase; }
+.flow-access-items { font-family: 'Fira Code', monospace; font-size: 11px; color: var(--card-02); margin-top: 2px; }
+.flow-dashed { width: 1px; height: 18px; border-left: 1px dashed var(--text-secondary); margin: 0 auto; }
+.summary-bar { background: var(--gray-800); padding: 16px 24px; margin-top: auto; }
+.summary-bar span { font-family: 'Karla', sans-serif; font-size: 13px; color: var(--card-02); line-height: 1.6; }
+
+/* 7. Confusion table */
+.confusion-grid { display: flex; flex-direction: column; gap: 8px; margin-top: 20px; }
+.confusion-row { display: flex; align-items: stretch; gap: 10px; }
+.wrong-box { background: #2D1515; padding: 12px 18px; flex: 1; display: flex; align-items: center; }
+.wrong-box span { font-family: 'Fira Code', monospace; font-size: 13px; color: #F87171; }
+.right-box { background: #152D15; padding: 12px 18px; flex: 1.5; display: flex; align-items: center; }
+.right-box span { font-family: 'Fira Code', monospace; font-size: 13px; color: #4ADE80; }
+.confusion-arrow { display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0; color: var(--accent); font-size: 18px; }
+
+/* 8. Layout */
+.two-col { display: flex; gap: 24px; flex: 1; min-height: 0; }
+.two-col .col-main { flex: 6; display: flex; flex-direction: column; }
+.two-col .col-side { flex: 3.5; display: flex; flex-direction: column; }
+.two-col-equal { display: flex; gap: 24px; flex: 1; min-height: 0; }
+.two-col-equal > div { flex: 1; display: flex; flex-direction: column; }
+.header-row { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; flex-shrink: 0; }
+.icon-circle { width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.icon-circle svg { width: 26px; height: 26px; }
+.icon-circle-black { background: var(--black); color: #fff; }
+.icon-circle-accent { background: var(--accent); color: #fff; }
+.accent-bar { width: 120px; height: 4px; background: var(--accent); margin-top: 20px; }
+.title-terms { font-family: 'Fira Code', monospace; font-size: 13px; color: var(--text-secondary); margin: 16px 0; }
+.title-subtitle { font-family: 'Karla', sans-serif; font-size: 18px; font-weight: 400; color: var(--card-02); max-width: 640px; line-height: 1.5; }
+.title-heading { font-size: 64px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; color: #fff; }
+.slide-footer { font-family: 'Fira Code', monospace; font-size: 13px; color: var(--text-secondary); margin-top: 16px; }
+
+/* 9. Watermark & counter */
+.watermark { position: absolute; right: 40px; bottom: -20px; font-family: 'Karla', sans-serif; font-size: 260px; font-weight: 700; letter-spacing: -0.05em; line-height: 1; color: rgba(23,27,32,0.045); pointer-events: none; z-index: 0; user-select: none; }
+.slide-counter { position: absolute; top: 48px; right: 64px; font-family: 'Fira Code', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--text-secondary); opacity: 0.5; z-index: 1; }
+.slide-dark .slide-counter { color: var(--card-02); }
+
+/* 10. Section divider */
+.section-divider { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
+.section-divider .section-number { font-family: 'Fira Code', monospace; font-size: 14px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 16px; }
+.section-divider h2 { font-size: 48px; color: #fff; margin-bottom: 12px; }
+.section-divider .section-desc { font-family: 'Karla', sans-serif; font-size: 18px; color: var(--card-02); max-width: 500px; line-height: 1.5; }
+
+@media print { .reveal .slides section { page-break-after: always; } }
+</style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides" id="slides-container"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script>
+const LOGO = '<svg fill="currentColor" height="16" viewBox="0 0 15 22" width="11" xmlns="http://www.w3.org/2000/svg"><g fill="currentColor"><path d="m10.3667 1.74847c.4-.39999.4-1.048495 0-1.44848-.39999-.3999866-1.04849-.3999866-1.44848 0zm-4.34543 1.44848c-.39999.39998-.39999 1.04849 0 1.44847.39998.39999 1.04849.39999 1.44847 0zm2.89695-2.89696-2.89695 2.89696 1.44847 1.44847 2.89696-2.89695z"/><path d="m2.04846 10.0663c0-.56566-.45857-1.02422-1.02423-1.02422-.565668 0-1.02423.45856-1.02423 1.02422zm-2.04846 8.1938c0 .5657.458562 1.0243 1.02423 1.0243.56566 0 1.02423-.4586 1.02423-1.0243zm0-8.1938v8.1938h2.04846v-8.1938z"/><path d="m14.3392 10.0663c0-.56566-.4586-1.02422-1.0242-1.02422-.5657 0-1.0243.45856-1.0243 1.02422zm-2.0485 8.1938c0 .5657.4586 1.0243 1.0243 1.0243.5656 0 1.0242-.4586 1.0242-1.0243zm0-8.1938v8.1938h2.0485v-8.1938z"/><path d="m11.2665 21.3328c.5657 0 1.0242-.4585 1.0242-1.0242s-.4585-1.0242-1.0242-1.0242zm-8.19381-2.0484c-.56567 0-1.02423.4585-1.02423 1.0242s.45856 1.0242 1.02423 1.0242zm8.19381 0h-8.19381v2.0484h8.19381z"/><path d="m11.2665 9.04208c.5657 0 1.0242-.45857 1.0242-1.02423 0-.56567-.4585-1.02423-1.0242-1.02423zm-8.19381-2.04846c-.56567 0-1.02423.45856-1.02423 1.02423 0 .56566.45856 1.02423 1.02423 1.02423zm8.19381 0h-8.19381v2.04846h8.19381z"/></g></svg>';
+
+const ICONS = {
+  ai: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><rect x="4" y="4" width="16" height="16"/><circle cx="9" cy="10" r="1.5" fill="currentColor"/><circle cx="15" cy="10" r="1.5" fill="currentColor"/><path d="M9 15h6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/></svg>',
+  llm: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><circle cx="12" cy="12" r="3"/><path d="M12 2 a10 10 0 0 1 0 20 a10 10 0 0 1 0-20" fill="none" stroke-dasharray="3 3"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg>',
+  token: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>',
+  prompt: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
+  hallucination: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M12 2L9 9l-7 1 5 5-1.5 7L12 18.5 18.5 22 17 15l5-5-7-1z"/><line x1="12" y1="2" x2="12" y2="5" stroke-dasharray="1 2"/></svg>',
+  agent: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
+  rag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><rect x="3" y="3" width="7" height="13"/><rect x="14" y="3" width="7" height="7"/><circle cx="17.5" cy="17.5" r="3.5" fill="none"/><line x1="20" y1="20" x2="22" y2="22"/></svg>',
+  tool: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
+  skills: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+  mcp: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M12 2v6"/><path d="M12 16v6"/><path d="M4.93 4.93l4.24 4.24"/><path d="M14.83 14.83l4.24 4.24"/><path d="M2 12h6"/><path d="M16 12h6"/><circle cx="12" cy="12" r="3"/></svg>',
+  api: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20" opacity="0.6"/></svg>',
+  cli: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>'
+};
+
+const CALLOUT_ICONS = { cross: '✕', warning: '⚠', check: '✓' };
+
+function pad(n) { return String(n).padStart(2, '0'); }
+
+function renderCallout(c) {
+  if (c.type === 'tool-stack') {
+    return `<div class="tool-stack" style="flex:1;">${c.tools.map(t =>
+      `<div class="tool-card"><div class="tool-name">${t.name}</div><div class="tool-desc">${t.desc}</div></div>`
+    ).join('')}</div>`;
+  }
+  if (c.type === 'success' && c.items) {
+    return `<div class="card-success" style="flex:1;">
+      <div class="card-label">${CALLOUT_ICONS[c.icon] || '✓'} ${c.label}</div>
+      <ul class="skill-list">${c.items.map(i => `<li><span class="arrow">→</span> ${i}</li>`).join('')}</ul>
+    </div>`;
+  }
+  const cls = `card-${c.type}`;
+  const colors = { danger: 'danger', warning: 'warning', success: 'success' };
+  let code = '';
+  if (c.codeExamples) {
+    code = `<div class="card-code">${c.codeExamples.map(e => `<code>${e}</code>`).join('<br>')}</div>`;
+  }
+  return `<div class="${cls}" style="flex:1;">
+    <div class="card-label">${CALLOUT_ICONS[c.icon] || ''} ${c.label}</div>
+    <p class="card-body"><strong>${c.title}</strong></p>
+    <p class="card-body" style="margin-top:10px;">${c.body}</p>
+    ${code}
+  </div>`;
+}
+
+function renderTitle(s) {
+  const bgAttr = s.illustration ? `data-background-image="${s.illustration}" data-background-size="cover" data-background-color="#171B20"` : '';
+  return `<section class="slide-dark" ${bgAttr}><div style="position:relative;z-index:1;">
+    <div class="eyebrow" style="display:flex;align-items:center;gap:8px;">${LOGO} ${s.eyebrow}</div>
+    <h1 class="title-heading" style="margin-top:8px;">${s.heading}</h1>
+    <div class="title-terms">${s.terms}</div>
+    <p class="title-subtitle">${s.subtitle}</p>
+    <div class="accent-bar" style="margin-top:28px;"></div>
+  </div></section>`;
+}
+
+function renderTerm(s, meta) {
+  const counter = `${pad(s.counter)} / ${pad(meta.totalTermSlides)}`;
+  const wmSize = s.watermarkSize ? `font-size:${s.watermarkSize}px;` : '';
+  const iconCls = s.iconColor === 'accent' ? 'icon-circle-accent' : 'icon-circle-black';
+  const iconSvg = ICONS[s.icon] || '';
+
+  let mainCardContent =
+    s.description.map((p, i) => `<p class="body-text"${i > 0 ? ' style="margin-top:14px;"' : ''}>${p}</p>`).join('');
+
+  if (s.callout && s.callout.position === 'inline') {
+    mainCardContent += `<div class="card-${s.callout.type}" style="margin-top:16px;padding:14px 18px;">
+      <div class="card-label">${CALLOUT_ICONS[s.callout.icon] || ''} ${s.callout.label}</div>
+      <p class="card-body"><strong>${s.callout.title}</strong> — ${s.callout.body}</p>
+    </div>`;
+  }
+
+  let sideCol;
+  if (s.illustration) {
+    sideCol = `<div class="col-side" style="display:flex;align-items:stretch;">
+      <img src="${s.illustration}" alt="${s.title} illustration" style="width:100%;height:100%;object-fit:cover;border:1px solid var(--rule);">
+    </div>`;
+  } else if (s.callout && s.callout.position !== 'inline') {
+    sideCol = `<div class="col-side">${renderCallout(s.callout)}</div>`;
+  } else {
+    sideCol = '';
+  }
+
+  return `<section class="slide-light">
+    <div class="watermark" style="${wmSize}">${s.watermark}</div>
+    <span class="slide-counter">${counter}</span>
+    <div class="header-row">
+      <div class="icon-circle ${iconCls}">${iconSvg}</div>
+      <div><div class="term-title">${s.title}</div><div class="term-subtitle">${s.subtitle}</div></div>
+    </div>
+    <div class="two-col">
+      <div class="col-main" style="justify-content:center;">${mainCardContent}</div>
+      ${sideCol}
+    </div>
+  </section>`;
+}
+
+function renderPrompt(s, meta) {
+  const counter = `${pad(s.counter)} / ${pad(meta.totalTermSlides)}`;
+  const wmSize = s.watermarkSize ? `font-size:${s.watermarkSize}px;` : '';
+  const iconSvg = ICONS[s.icon] || '';
+
+  const cols = s.columns.map(col => {
+    const ebCls = col.eyebrowPurple ? 'eyebrow eyebrow-purple' : 'eyebrow';
+    const paras = col.paragraphs.map((p, i) =>
+      `<p class="body-text"${i > 0 ? ' style="margin-top:12px;"' : ''}>${p}</p>`
+    ).join('');
+    return `<div><div class="card" style="flex:1;"><div class="${ebCls}">${col.eyebrow}</div>${paras}</div></div>`;
+  }).join('');
+
+  let bottomBar = '';
+  if (s.bottomBar) {
+    const bgMap = { danger: 'var(--danger-bg)', warning: 'var(--warning-bg)' };
+    const colorMap = { danger: 'var(--danger-text)', warning: 'var(--warning-text)' };
+    bottomBar = `<div class="insight-bar" style="background:${bgMap[s.bottomBar.type]};border-color:transparent;">
+      <span class="insight-icon">${CALLOUT_ICONS[s.bottomBar.icon] || ''}</span>
+      <span style="color:${colorMap[s.bottomBar.type]};">${s.bottomBar.text}</span>
+    </div>`;
+  }
+
+  return `<section class="slide-light">
+    <div class="watermark" style="${wmSize}">${s.watermark}</div>
+    <span class="slide-counter">${counter}</span>
+    <div class="header-row">
+      <div class="icon-circle icon-circle-${s.iconColor}">${iconSvg}</div>
+      <div><div class="term-title">${s.title}</div><div class="term-subtitle">${s.subtitle}</div></div>
+    </div>
+    <div class="two-col-equal">${cols}</div>
+    ${bottomBar}
+  </section>`;
+}
+
+function renderSectionDivider(s) {
+  const bgAttr = s.illustration ? `data-background-image="${s.illustration}" data-background-size="cover" data-background-color="#171B20"` : '';
+  return `<section class="slide-dark section-divider" ${bgAttr}>
+    <div style="position:relative;z-index:1;">
+      <div class="section-number">${s.number}</div>
+      <h2>${s.heading}</h2>
+      <p class="section-desc">${s.description}</p>
+      <div class="accent-bar"></div>
+    </div>
+  </section>`;
+}
+
+function renderOverview(s) {
+  const boxes = s.flowSteps.map((step, i) => {
+    const box = `<div class="flow-box flow-${step.style}">
+      <div class="flow-label">${step.label}</div>
+      <div class="flow-sub">${step.sub}</div>
+    </div>`;
+    return i < s.flowSteps.length - 1 ? box + '<div class="flow-arrow"></div>' : box;
+  }).join('');
+
+  const bgAttr = s.illustration ? `data-background-image="${s.illustration}" data-background-size="cover" data-background-color="#171B20"` : '';
+  return `<section class="slide-dark" ${bgAttr}>
+    <div class="eyebrow">${s.eyebrow}</div>
+    <h2 style="font-size:32px;color:#fff;margin-top:8px;margin-bottom:8px;">${s.heading}</h2>
+    <div class="flow-row">${boxes}</div>
+    <div class="flow-access">
+      <div class="flow-dashed"></div>
+      <div class="flow-access-label">${s.accessLabel}</div>
+      <div class="flow-access-items">${s.accessItems}</div>
+    </div>
+    <div class="summary-bar"><span>${s.summary}</span></div>
+  </section>`;
+}
+
+function renderConfusions(s) {
+  const rows = s.rows.map(r => `<div class="confusion-row">
+    <div class="wrong-box"><span>${r.wrong}</span></div>
+    <div class="confusion-arrow">→</div>
+    <div class="right-box"><span>${r.right}</span></div>
+  </div>`).join('');
+
+  const bgAttr = s.illustration ? `data-background-image="${s.illustration}" data-background-size="cover" data-background-color="#171B20"` : '';
+  return `<section class="slide-dark" ${bgAttr}>
+    <div class="eyebrow">${s.eyebrow}</div>
+    <h2 style="font-size:32px;color:#fff;margin-top:8px;">${s.heading}</h2>
+    <div class="confusion-grid">${rows}</div>
+  </section>`;
+}
+
+function renderClosing(s) {
+  return `<section class="slide-dark"><div>
+    <div class="eyebrow">${s.eyebrow}</div>
+    <h2 style="font-size:44px;color:#fff;margin-top:8px;max-width:700px;">${s.heading}</h2>
+    <p class="title-subtitle" style="margin-top:20px;max-width:580px;">${s.subtitle}</p>
+    <div class="accent-bar" style="margin-top:28px;"></div>
+    <div class="slide-footer" style="margin-top:40px;display:flex;align-items:center;gap:8px;">${LOGO} ${s.footer}</div>
+  </div></section>`;
+}
+
+const RENDERERS = {
+  title: renderTitle,
+  term: renderTerm,
+  prompt: renderPrompt,
+  'section-divider': renderSectionDivider,
+  overview: renderOverview,
+  confusions: renderConfusions,
+  closing: renderClosing
+};
+
+fetch('slides.json')
+  .then(r => r.json())
+  .then(data => {
+    document.title = data.meta.title;
+    const container = document.getElementById('slides-container');
+    container.innerHTML = data.slides.map(slide => {
+      const fn = RENDERERS[slide.type];
+      return fn ? fn(slide, data.meta) : '';
+    }).join('\n');
+    Reveal.initialize({
+      hash: true,
+      width: 1280,
+      height: 720,
+      margin: 0,
+      minScale: 0.2,
+      maxScale: 2.0,
+      transition: 'slide',
+      controls: true,
+      controlsLayout: 'bottom-right',
+      progress: true,
+      center: false,
+      plugins: []
+    });
+  });
+</script>
+</body>
+</html>
