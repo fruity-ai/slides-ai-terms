@@ -146,6 +146,16 @@
 .section-divider h2 { font-size: 72px; color: #fff; margin-bottom: 16px; }
 .section-divider .section-desc { font-family: 'Karla', sans-serif; font-size: 26px; color: var(--text-on-dark); max-width: 700px; line-height: 1.5; }
 
+/* 11. Example sub-slide */
+.example-eyebrow { font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); }
+.example-headline { font-family: 'Karla', sans-serif; font-size: 26px; font-weight: 600; line-height: 1.3; color: var(--text-primary); margin-top: 12px; margin-bottom: 28px; max-width: 920px; letter-spacing: -0.01em; }
+.example-blocks { display: flex; flex-direction: column; gap: 12px; }
+.example-block { background: var(--card); border: 1px solid var(--rule); border-left: 4px solid var(--accent); padding: 16px 22px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.example-block-label { font-family: 'Fira Code', monospace; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 6px; }
+.example-block-content { font-family: 'Karla', sans-serif; font-size: 16px; line-height: 1.55; color: var(--text-primary); }
+.example-takeaway { font-family: 'Karla', sans-serif; font-size: 15px; color: var(--text-secondary); font-style: italic; margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--rule); max-width: 920px; }
+.reveal .slides section.stack { padding: 0 !important; display: block !important; }
+
 @media print { .reveal .slides section { page-break-after: always; } }
 </style>
 </head>
@@ -354,6 +364,26 @@ function renderClosing(s) {
   </div></section>`;
 }
 
+function renderExample(s, meta) {
+  const ex = s.example;
+  const counter = `${pad(s.counter)} / ${pad(meta.totalTermSlides)}`;
+  const blocks = ex.blocks.map(b => `
+    <div class="example-block">
+      <div class="example-block-label">${b.label}</div>
+      <div class="example-block-content">${b.content}</div>
+    </div>`).join('');
+  const takeaway = ex.takeaway
+    ? `<div class="example-takeaway">${ex.takeaway}</div>`
+    : '';
+  return `<section class="slide-light">
+    <span class="slide-counter">${counter} · EXAMPLE</span>
+    <div class="example-eyebrow">EXAMPLE — ${s.title.toUpperCase()}</div>
+    <div class="example-headline">${ex.scenario}</div>
+    <div class="example-blocks">${blocks}</div>
+    ${takeaway}
+  </section>`;
+}
+
 const RENDERERS = {
   title: renderTitle,
   term: renderTerm,
@@ -371,7 +401,13 @@ fetch('slides.json')
     const container = document.getElementById('slides-container');
     container.innerHTML = data.slides.map(slide => {
       const fn = RENDERERS[slide.type];
-      return fn ? fn(slide, data.meta) : '';
+      if (!fn) return '';
+      const main = fn(slide, data.meta);
+      if (slide.example) {
+        const example = renderExample(slide, data.meta);
+        return `<section>${main}${example}</section>`;
+      }
+      return main;
     }).join('\n');
     Reveal.initialize({
       hash: true,

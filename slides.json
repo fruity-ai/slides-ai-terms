@@ -31,7 +31,16 @@
         "title": "\"AI can think and feel\"",
         "body": "AI processes patterns in data — it doesn't think or feel. It's an advanced tool that can simulate understanding, but it has no consciousness, intentions, or desires."
       },
-      "illustration": "illustrations/ai-illustration.png"
+      "illustration": "illustrations/ai-illustration.png",
+      "example": {
+        "scenario": "AI is already in your pocket — long before chatbots existed.",
+        "blocks": [
+          { "label": "Email", "content": "Spam filtering automatically sorts unwanted mail from real ones." },
+          { "label": "Phone", "content": "Face unlock recognizes you in a fraction of a second." },
+          { "label": "Maps", "content": "Real-time routing predicts traffic from millions of trips." }
+        ],
+        "takeaway": "All of these are AI — none of them are LLMs."
+      }
     },
     {
       "type": "term",
@@ -52,7 +61,15 @@
         "title": "\"LLM = AI\"",
         "body": "An LLM is one type of AI — like a gasoline engine is one type of engine. AI is the umbrella covering everything from image recognition to robotics. An LLM specializes in language."
       },
-      "illustration": "illustrations/llm-illustration.png"
+      "illustration": "illustrations/llm-illustration.png",
+      "example": {
+        "scenario": "Predicting the next word, again and again — until the answer is complete.",
+        "blocks": [
+          { "label": "User input", "content": "\"Write a polite reply declining tomorrow's client meeting.\"" },
+          { "label": "LLM output", "content": "\"Hi Anna — thanks for the invite. I won't be able to make tomorrow, but I'd love to find another time next week. — Mike\"" }
+        ],
+        "takeaway": "Every word above was generated one token at a time, predicting what's most likely to come next."
+      }
     },
     {
       "type": "term",
@@ -78,7 +95,16 @@
           "\"competitor analysis\" → 4 tokens"
         ]
       },
-      "illustration": "illustrations/token-illustration.png"
+      "illustration": "illustrations/token-illustration.png",
+      "example": {
+        "scenario": "Watch a sentence get sliced into tokens.",
+        "blocks": [
+          { "label": "Sentence", "content": "\"AI is changing how we work.\"" },
+          { "label": "Tokens (7)", "content": "[AI] [ is] [ changing] [ how] [ we] [ work] [.]" },
+          { "label": "Tricky word", "content": "\"Antidisestablishmentarianism\" alone is 8+ tokens." }
+        ],
+        "takeaway": "Tokens decide both cost and how much an agent can hold in mind at once."
+      }
     },
     {
       "type": "prompt",
@@ -113,6 +139,14 @@
         "type": "danger",
         "icon": "cross",
         "text": "<strong>Common misconception:</strong> \"Prompt = just a question\" — A prompt is instruction + context + examples + rules. The quality of the prompt determines the quality of the answer."
+      },
+      "example": {
+        "scenario": "Same task, two prompts. Watch the answer change.",
+        "blocks": [
+          { "label": "Weak prompt", "content": "\"Write something about coffee.\"" },
+          { "label": "Strong prompt", "content": "\"Write a 3-sentence intro for a beginner blog post on home espresso. Casual tone, no jargon, end with a question.\"" }
+        ],
+        "takeaway": "More context → more useful answer. Treat prompts like briefs, not questions."
       }
     },
     {
@@ -121,7 +155,7 @@
       "watermark": "Hallucination",
       "watermarkSize": 100,
       "icon": "hallucination",
-      "iconColor": "accent",
+      "iconColor": "black",
       "title": "Hallucination",
       "subtitle": "Confabulation / Fabrication",
       "description": [
@@ -135,7 +169,16 @@
         "title": "\"AI lies on purpose\"",
         "body": "AI has no intent to deceive. Hallucinations occur because the model generates probable text, not verified facts. It can invent sources, numbers, and references that have never existed."
       },
-      "illustration": "illustrations/hallucination-illustration.png"
+      "illustration": "illustrations/hallucination-illustration.png",
+      "example": {
+        "scenario": "Confident, plausible — and completely made up.",
+        "blocks": [
+          { "label": "Question", "content": "\"Who wrote the 1987 paper on quantum tunneling in plant cells?\"" },
+          { "label": "LLM answer", "content": "\"Dr. Sarah Whitfield, published in Nature Plant Biology, vol. 14, 1987.\"" },
+          { "label": "Reality", "content": "No such person, paper, or journal exists." }
+        ],
+        "takeaway": "Always verify facts that matter. The model isn't lying — it's pattern-matching."
+      }
     },
     {
       "type": "section-divider",
@@ -150,7 +193,7 @@
       "watermark": "Agent",
       "watermarkSize": 170,
       "icon": "agent",
-      "iconColor": "accent",
+      "iconColor": "black",
       "title": "Agent",
       "subtitle": "Autonomous AI Agent",
       "description": [
@@ -164,7 +207,16 @@
         "title": "\"A chatbot is an agent\"",
         "body": "A chatbot reacts passively to input. An agent acts proactively — it plans, uses tools, accesses data, and completes tasks end-to-end without constant guidance."
       },
-      "illustration": "illustrations/agent-illustration.png"
+      "illustration": "illustrations/agent-illustration.png",
+      "example": {
+        "scenario": "Task: \"Book me a hotel in Berlin under €150 for next Friday.\"",
+        "blocks": [
+          { "label": "1. Plan", "content": "Check calendar for travel dates → set price and location filters." },
+          { "label": "2. Act", "content": "Search hotel API → filter results → check reviews → shortlist 3." },
+          { "label": "3. Deliver", "content": "Present options → confirm choice → book and email confirmation." }
+        ],
+        "takeaway": "An agent owns the whole task — plan, execute, and deliver — not just one reply."
+      }
     },
     {
       "type": "term",
@@ -185,7 +237,16 @@
         "title": "\"RAG = just a search\"",
         "body": "RAG is more than search. It finds relevant text excerpts, ranks them, and weaves them into the prompt so the LLM can answer with context it was never trained on — like your internal contracts or project data."
       },
-      "illustration": "illustrations/rag-illustration.png"
+      "illustration": "illustrations/rag-illustration.png",
+      "example": {
+        "scenario": "User asks: \"What's our refund policy on damaged goods?\"",
+        "blocks": [
+          { "label": "1. Retrieve", "content": "Search company docs → find policy.pdf, section 4.2 on damaged goods." },
+          { "label": "2. Augment", "content": "Insert that excerpt directly into the LLM's prompt as context." },
+          { "label": "3. Generate", "content": "LLM answers using the actual policy — not its training data." }
+        ],
+        "takeaway": "Grounded in your real documents. Far less likely to hallucinate."
+      }
     },
     {
       "type": "section-divider",
@@ -215,7 +276,16 @@
           { "name": "send_email", "desc": "Sends an email through the connected mail account." }
         ]
       },
-      "illustration": "illustrations/tool-illustration.png"
+      "illustration": "illustrations/tool-illustration.png",
+      "example": {
+        "scenario": "Task: \"What's the weather in Paris right now?\"",
+        "blocks": [
+          { "label": "Agent reasons", "content": "I need live data — my training won't help. Use the weather tool." },
+          { "label": "Tool call", "content": "get_weather(city: \"Paris\")" },
+          { "label": "Result", "content": "{ temp: 14°C, conditions: \"light rain\" } → \"It's 14°C and raining lightly in Paris.\"" }
+        ],
+        "takeaway": "Tools turn an LLM from a writer into a doer."
+      }
     },
     {
       "type": "term",
@@ -223,7 +293,7 @@
       "watermark": "Skills",
       "watermarkSize": 180,
       "icon": "skills",
-      "iconColor": "accent",
+      "iconColor": "black",
       "title": "Skills",
       "subtitle": "Skill = Tool + Knowledge + Rules",
       "description": [
@@ -242,14 +312,23 @@
           "SEO audit with action recommendations"
         ]
       },
-      "illustration": "illustrations/skills-illustration.png"
+      "illustration": "illustrations/skills-illustration.png",
+      "example": {
+        "scenario": "Skill: \"Run a competitor analysis.\"",
+        "blocks": [
+          { "label": "Tools", "content": "web_search + scrape_page + summarize" },
+          { "label": "Knowledge", "content": "Which sites to check, which data points matter (pricing, positioning, recent launches)." },
+          { "label": "Rules", "content": "Always cite sources. Flag any claim older than 6 months. Output as a 1-page brief." }
+        ],
+        "takeaway": "A skill is the difference between \"can search\" and \"can analyze\"."
+      }
     },
     {
       "type": "term",
       "counter": 10,
       "watermark": "MCP",
       "icon": "mcp",
-      "iconColor": "accent",
+      "iconColor": "black",
       "title": "MCP",
       "subtitle": "Model Context Protocol",
       "description": [
@@ -263,7 +342,15 @@
         "title": "\"MCP = an API\"",
         "body": "An API is the connection to one system. MCP is the protocol that standardizes the connection to <em>many</em> APIs. MCP lets agents reach hundreds of tools through one shared language instead of building individual integrations."
       },
-      "illustration": "illustrations/mcp-illustration.png"
+      "illustration": "illustrations/mcp-illustration.png",
+      "example": {
+        "scenario": "One protocol, many systems.",
+        "blocks": [
+          { "label": "Without MCP", "content": "Build a custom integration for Slack. Another for Drive. Another for GitHub. Another for Jira. Maintain them all." },
+          { "label": "With MCP", "content": "Each system exposes an MCP server. The agent speaks one shared language to all of them." }
+        ],
+        "takeaway": "Like USB: plug it in once and it just works — across hundreds of tools."
+      }
     },
     {
       "type": "section-divider",
@@ -291,7 +378,16 @@
         "title": "\"APIs are only for developers\"",
         "body": "You use APIs every day without realizing it. When you log in with Google, pay with Apple Pay, or check the weather in an app — apps are talking to each other through APIs behind the scenes."
       },
-      "illustration": "illustrations/api-illustration.png"
+      "illustration": "illustrations/api-illustration.png",
+      "example": {
+        "scenario": "Your weather app asks weather.com for the current conditions.",
+        "blocks": [
+          { "label": "Request", "content": "GET https://api.weather.com/current?city=Paris" },
+          { "label": "Response", "content": "{ \"temperature\": 14, \"condition\": \"rainy\" }" },
+          { "label": "Result", "content": "App displays \"14°C — rainy\" to the user." }
+        ],
+        "takeaway": "APIs let programs ask each other questions in a structured way."
+      }
     },
     {
       "type": "term",
@@ -313,7 +409,15 @@
         "body": "CLI is faster and easier to automate than GUI.",
         "position": "inline"
       },
-      "illustration": "illustrations/cli-illustration.png"
+      "illustration": "illustrations/cli-illustration.png",
+      "example": {
+        "scenario": "Save and commit a code change.",
+        "blocks": [
+          { "label": "GUI", "content": "Open Source Control panel → review files → type a message → click Stage → click Commit. (4 steps, lots of mouse.)" },
+          { "label": "CLI", "content": "git commit -am \"Fix login bug\"" }
+        ],
+        "takeaway": "Less clicking, more doing — and trivially scriptable."
+      }
     },
     {
       "type": "overview",
