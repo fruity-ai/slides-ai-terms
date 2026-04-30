@@ -1,15 +1,15 @@
 {
   "meta": {
-    "title": "Forstå AI-sproget — Fruity AI",
+    "title": "AI Terminology Decoded — Fruity AI",
     "totalTermSlides": 12
   },
   "slides": [
     {
       "type": "title",
       "eyebrow": "FRUITY AI · TERMINOLOGY GUIDE",
-      "heading": "Forstå AI-sproget",
+      "heading": "AI Terminology Decoded",
       "terms": "AI · LLM · Token · Prompt · Hallucination · Agent · RAG · Tool · Skills · MCP · API · CLI",
-      "subtitle": "Hvad betyder termerne, hvordan spiller de sammen, og hvad er de typiske misforståelser?",
+      "subtitle": "What do the terms mean, how do they fit together, and what are the most common misconceptions?",
       "illustration": "illustrations/title-illustration.png"
     },
     {
@@ -21,15 +21,15 @@
       "title": "AI",
       "subtitle": "Artificial Intelligence",
       "description": [
-        "Kunstig intelligens er det brede forskningsfelt der handler om at få maskiner til at udføre opgaver, der normalt kræver menneskelig intelligens — genkendelse, beslutningstagning, sprogforståelse, planlægning.",
-        "AI er paraplyen. Under den finder du maskinlæring, deep learning, LLM'er, computervision, robotteknologi og meget mere. Når folk siger \"AI\" i dag, mener de oftest LLM-baserede produkter — men feltet er langt bredere."
+        "Artificial intelligence is the broad research field focused on getting machines to perform tasks that normally require human intelligence — recognition, decision-making, language understanding, planning.",
+        "AI is the umbrella. Beneath it sit machine learning, deep learning, LLMs, computer vision, robotics, and much more. When people say \"AI\" today, they usually mean LLM-based products — but the field is far broader."
       ],
       "callout": {
         "type": "warning",
-        "label": "Typisk forvirring",
+        "label": "Common confusion",
         "icon": "warning",
-        "title": "\"AI kan tænke og føle\"",
-        "body": "AI processerer mønstre i data — den tænker eller føler ikke. Den er et avanceret værktøj der kan simulere forståelse, men den har ingen bevidsthed, intentioner eller ønsker."
+        "title": "\"AI can think and feel\"",
+        "body": "AI processes patterns in data — it doesn't think or feel. It's an advanced tool that can simulate understanding, but it has no consciousness, intentions, or desires."
       },
       "illustration": "illustrations/ai-illustration.png"
     },
@@ -42,15 +42,15 @@
       "title": "LLM",
       "subtitle": "Large Language Model",
       "description": [
-        "En stor sprogmodel er en type AI-model der er trænet på enorme mængder tekst for at forstå og generere sprog. Den forudsiger det mest sandsynlige næste ord baseret på konteksten.",
-        "LLM'er som GPT-4, Claude og Llama er \"motoren\" bag moderne AI-assistenter. De kan skrive, analysere, oversætte og ræsonnere — men de er stadig bare ét værktøj i AI-værktøjskassen."
+        "A large language model is a type of AI model trained on enormous amounts of text to understand and generate language. It predicts the most likely next word based on the context.",
+        "LLMs like GPT-4, Claude, and Llama are the \"engine\" behind modern AI assistants. They can write, analyze, translate, and reason — but they're still just one tool in the AI toolbox."
       ],
       "callout": {
         "type": "danger",
-        "label": "Typisk misforståelse",
+        "label": "Common misconception",
         "icon": "cross",
         "title": "\"LLM = AI\"",
-        "body": "LLM er én type AI — ligesom en benzinmotor er én type motor. AI er paraplyen der dækker alt fra billedgenkendelse til robotstyring. En LLM er specialiseret i sprog."
+        "body": "An LLM is one type of AI — like a gasoline engine is one type of engine. AI is the umbrella covering everything from image recognition to robotics. An LLM specializes in language."
       },
       "illustration": "illustrations/llm-illustration.png"
     },
@@ -64,18 +64,18 @@
       "title": "Token",
       "subtitle": "Tokens / Context Window",
       "description": [
-        "Den mindste enhed en LLM arbejder med. Ikke et ord, ikke et bogstav — noget midt imellem. En token er ca. ¾ af et engelsk ord. Danske ord med æ, ø, å bruger ofte flere tokens.",
-        "En LLM har et \"context window\" — det maksimale antal tokens den kan behandle ad gangen, både input og output. Alt hvad agenten læser og skriver i én samtale skal passe inden for dette vindue."
+        "The smallest unit an LLM works with. Not a word, not a letter — something in between. A token is roughly ¾ of an English word. Non-English words and accented characters (é, ñ, ü, ß) often use more tokens.",
+        "An LLM has a \"context window\" — the maximum number of tokens it can process at once, including both input and output. Everything an agent reads and writes in one conversation has to fit inside this window."
       ],
       "callout": {
         "type": "warning",
-        "label": "Typisk forvirring",
+        "label": "Common confusion",
         "icon": "warning",
-        "title": "\"Token = ord\"",
-        "body": "Ordet \"Marmalade\" kan være 3 tokens. \"Kontraktgennemgang\" kan være 4-5. Tokens påvirker både pris og hvor meget information en agent kan behandle ad gangen.",
+        "title": "\"Token = word\"",
+        "body": "The word \"Marmalade\" can be 3 tokens. \"Antidisestablishmentarianism\" can be 8+. Tokens affect both cost and how much information an agent can handle at a time.",
         "codeExamples": [
           "\"Fruity AI\" → 3 tokens",
-          "\"konkurrentanalyse\" → 5 tokens"
+          "\"competitor analysis\" → 4 tokens"
         ]
       },
       "illustration": "illustrations/token-illustration.png"
@@ -94,25 +94,25 @@
           "eyebrow": "System Prompt",
           "eyebrowPurple": true,
           "paragraphs": [
-            "Den skjulte instruktion der definerer agentens rolle, regler og kontekst. Brugeren ser den normalt ikke.",
-            "System prompten er som en jobbeskrivelse: den fortæller agenten hvem den er, hvad den må, og hvordan den skal opføre sig. Den sætter rammerne for <em>alle</em> svar.",
-            "<span style=\"color:var(--text-secondary);font-size:13px;\">Eksempel: \"Du er en juridisk assistent for et dansk advokatfirma. Svar altid på dansk. Henvis aldrig til lovgivning du ikke er sikker på.\"</span>"
+            "The hidden instruction that defines the agent's role, rules, and context. Users normally don't see it.",
+            "The system prompt is like a job description: it tells the agent who it is, what it's allowed to do, and how it should behave. It sets the frame for <em>every</em> response.",
+            "<span style=\"color:var(--text-secondary);font-size:13px;\">Example: \"You are a legal assistant for a corporate law firm. Always answer in clear English. Never cite legislation you aren't certain about.\"</span>"
           ]
         },
         {
           "eyebrow": "User Prompt",
           "eyebrowPurple": false,
           "paragraphs": [
-            "Det brugeren faktisk skriver — spørgsmålet, opgaven eller instruktionen der sendes til agenten i samtalen.",
-            "User prompten er det synlige input. Jo mere kontekst, eksempler og struktur brugeren giver, desto bedre bliver svaret. En god prompt er mere end bare et spørgsmål — det er en detaljeret opgavebeskrivelse.",
-            "<span style=\"color:var(--text-secondary);font-size:13px;\">Eksempel: \"Gennemgå denne kontrakt og list de 5 vigtigste risici for os som leverandør. Formatér som tabel.\"</span>"
+            "What the user actually writes — the question, task, or instruction sent to the agent in the conversation.",
+            "The user prompt is the visible input. The more context, examples, and structure the user provides, the better the response. A good prompt is more than a question — it's a detailed task description.",
+            "<span style=\"color:var(--text-secondary);font-size:13px;\">Example: \"Review this contract and list the 5 most important risks for us as the supplier. Format the answer as a table.\"</span>"
           ]
         }
       ],
       "bottomBar": {
         "type": "danger",
         "icon": "cross",
-        "text": "<strong>Typisk misforståelse:</strong> \"Prompt = bare et spørgsmål\" — En prompt er instruktion + kontekst + eksempler + regler. Kvaliteten af prompten afgør kvaliteten af svaret."
+        "text": "<strong>Common misconception:</strong> \"Prompt = just a question\" — A prompt is instruction + context + examples + rules. The quality of the prompt determines the quality of the answer."
       }
     },
     {
@@ -123,25 +123,25 @@
       "icon": "hallucination",
       "iconColor": "accent",
       "title": "Hallucination",
-      "subtitle": "Konfabulation / Fabrication",
+      "subtitle": "Confabulation / Fabrication",
       "description": [
-        "Når en LLM genererer tekst der lyder overbevisende og selvsikker, men som er faktuel forkert. Modellen \"ved\" ikke den tager fejl — den producerer de mest sandsynlige tokens uden et begreb om sandhed.",
-        "Hallucinationer er en iboende egenskab ved LLM'er, ikke en bug der kan fjernes helt. Det er derfor RAG, kildeverifikation og menneskelig oversight er afgørende i professionelle sammenhænge."
+        "When an LLM generates text that sounds confident and convincing but is factually wrong. The model doesn't \"know\" it's wrong — it produces the most likely tokens with no concept of truth.",
+        "Hallucinations are an inherent property of LLMs, not a bug that can be fully removed. That's why RAG, source verification, and human oversight are critical in professional settings."
       ],
       "callout": {
         "type": "danger",
-        "label": "Typisk misforståelse",
+        "label": "Common misconception",
         "icon": "cross",
-        "title": "\"AI lyver med vilje\"",
-        "body": "AI har ingen intention om at bedrage. Hallucinationer opstår fordi modellen genererer sandsynlig tekst, ikke verificerede fakta. Den kan opfinde kilder, tal og referencer der aldrig har eksisteret."
+        "title": "\"AI lies on purpose\"",
+        "body": "AI has no intent to deceive. Hallucinations occur because the model generates probable text, not verified facts. It can invent sources, numbers, and references that have never existed."
       },
       "illustration": "illustrations/hallucination-illustration.png"
     },
     {
       "type": "section-divider",
-      "number": "DEL 02",
-      "heading": "Agenten i praksis",
-      "description": "Hvordan en LLM bliver til en selvstændig medarbejder der kan handle, hente viden og løse opgaver.",
+      "number": "PART 02",
+      "heading": "The agent in practice",
+      "description": "How an LLM becomes an autonomous worker that can act, retrieve knowledge, and solve tasks.",
       "illustration": "illustrations/section-agent-illustration.png"
     },
     {
@@ -154,15 +154,15 @@
       "title": "Agent",
       "subtitle": "Autonomous AI Agent",
       "description": [
-        "En AI-agent er software der kan planlægge, ræsonnere og handle selvstændigt for at løse komplekse opgaver. Den bruger en LLM som hjerne, men kan også kalde tools, hente data og tilpasse sin tilgang undervejs.",
-        "Forskellen på en chatbot og en agent: en chatbot svarer på spørgsmål. En agent tager ansvar for en opgave, lægger en plan, udfører handlinger og vurderer resultatet — som en dygtig medarbejder der arbejder selvstændigt."
+        "An AI agent is software that can plan, reason, and act independently to solve complex tasks. It uses an LLM as its brain, but it can also call tools, retrieve data, and adapt its approach as it goes.",
+        "The difference between a chatbot and an agent: a chatbot answers questions. An agent takes ownership of a task — it makes a plan, executes actions, and evaluates the result — like a skilled employee working independently."
       ],
       "callout": {
         "type": "danger",
-        "label": "Typisk misforståelse",
+        "label": "Common misconception",
         "icon": "cross",
-        "title": "\"En chatbot er en agent\"",
-        "body": "En chatbot reagerer passivt på input. En agent handler proaktivt — den planlægger, bruger tools, tilgår data og fuldfører opgaver fra start til slut uden konstant vejledning."
+        "title": "\"A chatbot is an agent\"",
+        "body": "A chatbot reacts passively to input. An agent acts proactively — it plans, uses tools, accesses data, and completes tasks end-to-end without constant guidance."
       },
       "illustration": "illustrations/agent-illustration.png"
     },
@@ -175,23 +175,23 @@
       "title": "RAG",
       "subtitle": "Retrieval-Augmented Generation",
       "description": [
-        "En teknik der giver en LLM adgang til ekstern viden ved at søge i dokumenter, databaser eller filer — og indsætte de relevante uddrag direkte i prompten.",
-        "I stedet for at stole på træningsdata alene, \"slår agenten op\" i jeres faktiske data før den svarer. RAG reducerer hallucinationer markant fordi svaret bygger på reel information."
+        "A technique that gives an LLM access to external knowledge by searching documents, databases, or files — and inserting the relevant excerpts directly into the prompt.",
+        "Instead of relying on training data alone, the agent \"looks up\" your actual data before answering. RAG dramatically reduces hallucinations because the response is grounded in real information."
       ],
       "callout": {
         "type": "danger",
-        "label": "Typisk misforståelse",
+        "label": "Common misconception",
         "icon": "cross",
-        "title": "\"RAG = bare en søgning\"",
-        "body": "RAG er mere end søgning. Den finder relevante tekstuddrag, rangerer dem, og væver dem ind i prompten så LLM'en kan svare med kontekst den aldrig er trænet på — f.eks. jeres interne kontrakter eller projektdata."
+        "title": "\"RAG = just a search\"",
+        "body": "RAG is more than search. It finds relevant text excerpts, ranks them, and weaves them into the prompt so the LLM can answer with context it was never trained on — like your internal contracts or project data."
       },
       "illustration": "illustrations/rag-illustration.png"
     },
     {
       "type": "section-divider",
-      "number": "DEL 03",
-      "heading": "Værktøjer & forbindelser",
-      "description": "Hvad en agent kan gøre, og hvordan den forbinder til omverdenen.",
+      "number": "PART 03",
+      "heading": "Tools & connections",
+      "description": "What an agent can do, and how it reaches into the outside world.",
       "illustration": "illustrations/section-tools-illustration.png"
     },
     {
@@ -204,15 +204,15 @@
       "title": "Tool",
       "subtitle": "Function / External Action",
       "description": [
-        "Et tool er en specifik handling en agent kan udføre — som at søge på nettet, læse en fil, sende en e-mail eller slå op i en database. Tools udvider agentens evner ud over ren tekstgenerering.",
-        "Uden tools kan en LLM kun skrive tekst. Med tools kan en agent faktisk <em>gøre</em> ting i den virkelige verden — hente data, opdatere systemer, sende beskeder og meget mere."
+        "A tool is a specific action an agent can perform — like searching the web, reading a file, sending an email, or querying a database. Tools extend the agent's capabilities beyond pure text generation.",
+        "Without tools, an LLM can only write text. With tools, an agent can actually <em>do</em> things in the real world — fetch data, update systems, send messages, and much more."
       ],
       "callout": {
         "type": "tool-stack",
         "tools": [
-          { "name": "web_search", "desc": "Søger på internettet og returnerer relevante resultater." },
-          { "name": "read_file", "desc": "Læser indholdet af en fil fra et tilknyttet system." },
-          { "name": "send_email", "desc": "Sender en e-mail via den tilknyttede mailkonto." }
+          { "name": "web_search", "desc": "Searches the internet and returns relevant results." },
+          { "name": "read_file", "desc": "Reads the contents of a file from a connected system." },
+          { "name": "send_email", "desc": "Sends an email through the connected mail account." }
         ]
       },
       "illustration": "illustrations/tool-illustration.png"
@@ -225,21 +225,21 @@
       "icon": "skills",
       "iconColor": "accent",
       "title": "Skills",
-      "subtitle": "Skill = Tool + Viden + Regler",
+      "subtitle": "Skill = Tool + Knowledge + Rules",
       "description": [
-        "En skill er en pakke der kombinerer tools med domæneviden og regler. Hvor et tool er en enkelt handling (f.eks. \"søg i database\"), er en skill en hel kompetence (f.eks. \"lav konkurrentanalyse\").",
-        "Skills gør en agent specialiseret. De indeholder viden om <em>hvornår</em> og <em>hvordan</em> tools skal bruges i en bestemt kontekst — ligesom en medarbejder der både har værktøjer og ekspertisen til at bruge dem rigtigt."
+        "A skill is a package that combines tools with domain knowledge and rules. Where a tool is a single action (e.g. \"search a database\"), a skill is a whole capability (e.g. \"run a competitor analysis\").",
+        "Skills make an agent specialized. They contain knowledge of <em>when</em> and <em>how</em> tools should be used in a given context — like an employee who has both the tools and the expertise to use them well."
       ],
       "callout": {
         "type": "success",
-        "label": "Eksempler på skills",
+        "label": "Skill examples",
         "icon": "check",
         "items": [
-          "Konkurrentanalyse fra offentlige kilder",
-          "Kontraktgennemgang med risiko-scoring",
-          "Ugentlig projektrapport fra Jira + Slack",
-          "Kundeonboarding med tjeklistevalidering",
-          "SEO-audit med handlingsanbefalinger"
+          "Competitor analysis from public sources",
+          "Contract review with risk scoring",
+          "Weekly project report from Jira + Slack",
+          "Customer onboarding with checklist validation",
+          "SEO audit with action recommendations"
         ]
       },
       "illustration": "illustrations/skills-illustration.png"
@@ -253,23 +253,23 @@
       "title": "MCP",
       "subtitle": "Model Context Protocol",
       "description": [
-        "MCP er en åben standard der definerer hvordan AI-agenter forbinder til eksterne tools og datakilder. Tænk på det som USB for AI — en universel stikforbindelse.",
-        "Før MCP skulle hver integration bygges fra bunden. Med MCP kan en agent tilslutte sig ethvert kompatibelt system via en standardiseret protokol — uden specialkode for hvert enkelt tool."
+        "MCP is an open standard that defines how AI agents connect to external tools and data sources. Think of it as USB for AI — a universal connector.",
+        "Before MCP, every integration had to be built from scratch. With MCP, an agent can connect to any compatible system through a standardized protocol — without custom code for each individual tool."
       ],
       "callout": {
         "type": "warning",
-        "label": "Typisk forvirring",
+        "label": "Common confusion",
         "icon": "warning",
-        "title": "\"MCP = en API\"",
-        "body": "En API er forbindelsen til ét system. MCP er protokollen der standardiserer forbindelsen til <em>mange</em> API'er. MCP gør det muligt for agenter at tilgå hundredvis af tools via ét fælles sprog i stedet for at bygge individuelle integrationer."
+        "title": "\"MCP = an API\"",
+        "body": "An API is the connection to one system. MCP is the protocol that standardizes the connection to <em>many</em> APIs. MCP lets agents reach hundreds of tools through one shared language instead of building individual integrations."
       },
       "illustration": "illustrations/mcp-illustration.png"
     },
     {
       "type": "section-divider",
-      "number": "DEL 04",
-      "heading": "Adgangsveje",
-      "description": "Hvordan brugere og systemer tilgår AI-agenten — de to grænseflader.",
+      "number": "PART 04",
+      "heading": "Access points",
+      "description": "How users and systems reach the AI agent — the two interfaces.",
       "illustration": "illustrations/section-access-illustration.png"
     },
     {
@@ -281,15 +281,15 @@
       "title": "API",
       "subtitle": "Application Programming Interface",
       "description": [
-        "En API er et sæt regler der lader forskellige programmer tale sammen. Tænk på det som en menu på en restaurant — du behøver ikke vide hvordan køkkenet fungerer, du bestiller bare fra menuen.",
-        "API'en definerer hvilke \"retter\" (funktioner) der er tilgængelige, hvad du skal sende med (input), og hvad du får tilbage (output). Det er den standardiserede måde software udveksler data på."
+        "An API is a set of rules that lets different programs talk to each other. Think of it like a menu at a restaurant — you don't need to know how the kitchen works, you just order from the menu.",
+        "The API defines what \"dishes\" (functions) are available, what you have to send (input), and what you get back (output). It's the standardized way software exchanges data."
       ],
       "callout": {
         "type": "danger",
-        "label": "Typisk misforståelse",
+        "label": "Common misconception",
         "icon": "cross",
-        "title": "\"API er kun for udviklere\"",
-        "body": "Du bruger API'er hver dag uden at vide det. Når du logger ind med Google, betaler med MobilePay eller tjekker vejret i en app — så taler apps sammen via API'er bag kulisserne."
+        "title": "\"APIs are only for developers\"",
+        "body": "You use APIs every day without realizing it. When you log in with Google, pay with Apple Pay, or check the weather in an app — apps are talking to each other through APIs behind the scenes."
       },
       "illustration": "illustrations/api-illustration.png"
     },
@@ -302,49 +302,49 @@
       "title": "CLI",
       "subtitle": "Command Line Interface",
       "description": [
-        "En tekstbaseret grænseflade hvor du skriver kommandoer i stedet for at klikke. CLI giver direkte kontrol over programmer og er fundamentet for automatisering.",
-        "Mens en grafisk brugerflade (GUI) er designet til at være visuel, er CLI designet til at være effektiv. Du kan kæde kommandoer sammen, skrive scripts og automatisere gentagne opgaver med få linjer."
+        "A text-based interface where you type commands instead of clicking. The CLI gives direct control over programs and is the foundation of automation.",
+        "While a graphical interface (GUI) is designed to be visual, a CLI is designed to be efficient. You can chain commands together, write scripts, and automate repetitive work in just a few lines."
       ],
       "callout": {
         "type": "danger",
-        "label": "Typisk misforståelse",
+        "label": "Common misconception",
         "icon": "cross",
-        "title": "\"CLI er gammeldags\"",
-        "body": "CLI er hurtigere og nemmere at automatisere end GUI.",
+        "title": "\"CLI is outdated\"",
+        "body": "CLI is faster and easier to automate than GUI.",
         "position": "inline"
       },
       "illustration": "illustrations/cli-illustration.png"
     },
     {
       "type": "overview",
-      "eyebrow": "OVERBLIK",
-      "heading": "Hvordan det hele spiller sammen",
+      "eyebrow": "OVERVIEW",
+      "heading": "How it all fits together",
       "flowSteps": [
-        { "label": "Bruger", "sub": "Mennesket", "style": "user" },
-        { "label": "Prompt", "sub": "Instruktion", "style": "accent" },
-        { "label": "Agent", "sub": "LLM + planlægning", "style": "accent" },
-        { "label": "RAG", "sub": "Datahentning", "style": "dark" },
-        { "label": "Skills", "sub": "Ekspertise", "style": "dark" },
-        { "label": "Tools", "sub": "Handlinger", "style": "dark" },
-        { "label": "MCP", "sub": "Forbindelse", "style": "dark" }
+        { "label": "User", "sub": "Human", "style": "user" },
+        { "label": "Prompt", "sub": "Instruction", "style": "accent" },
+        { "label": "Agent", "sub": "LLM + planning", "style": "accent" },
+        { "label": "RAG", "sub": "Data retrieval", "style": "dark" },
+        { "label": "Skills", "sub": "Expertise", "style": "dark" },
+        { "label": "Tools", "sub": "Actions", "style": "dark" },
+        { "label": "MCP", "sub": "Connection", "style": "dark" }
       ],
-      "accessLabel": "Adgangsveje",
+      "accessLabel": "Access points",
       "accessItems": "CLI / API",
-      "summary": "Brugeren sender en prompt via CLI eller API → Agenten (LLM + system prompt) henter relevant data via RAG → vælger skills → kalder tools via MCP → leverer resultatet tilbage.",
+      "summary": "The user sends a prompt via CLI or API → the agent (LLM + system prompt) retrieves relevant data via RAG → selects skills → calls tools through MCP → delivers the result back.",
       "illustration": "illustrations/overview-illustration.png"
     },
     {
       "type": "confusions",
-      "eyebrow": "TYPISKE FORVEKSLINGER",
-      "heading": "Undgå disse fælder",
+      "eyebrow": "COMMON CONFUSIONS",
+      "heading": "Avoid these traps",
       "rows": [
-        { "wrong": "LLM = AI", "right": "LLM er én type AI. AI er paraplyen." },
-        { "wrong": "AI lyver med vilje", "right": "Hallucination er sandsynlig tekst, ikke bevidst løgn." },
-        { "wrong": "Chatbot = Agent", "right": "Agent handler selvstændigt med tools og planlægning." },
-        { "wrong": "Prompt = spørgsmål", "right": "Prompt = instruktion + kontekst + eksempler + regler." },
-        { "wrong": "Tool = Skill", "right": "Tool = én handling. Skill = pakke af viden + tools." },
-        { "wrong": "MCP = API", "right": "MCP standardiserer forbindelsen til mange API'er." },
-        { "wrong": "CLI er forældet", "right": "CLI er hurtigere og nemmere at automatisere end GUI." }
+        { "wrong": "LLM = AI", "right": "LLM is one type of AI. AI is the umbrella." },
+        { "wrong": "AI lies on purpose", "right": "Hallucination is probable text, not deliberate lying." },
+        { "wrong": "Chatbot = Agent", "right": "An agent acts independently with tools and planning." },
+        { "wrong": "Prompt = question", "right": "Prompt = instruction + context + examples + rules." },
+        { "wrong": "Tool = Skill", "right": "Tool = one action. Skill = bundle of knowledge + tools." },
+        { "wrong": "MCP = API", "right": "MCP standardizes the connection to many APIs." },
+        { "wrong": "CLI is outdated", "right": "CLI is faster and easier to automate than GUI." }
       ],
       "illustration": "illustrations/confusions-illustration.png"
     }

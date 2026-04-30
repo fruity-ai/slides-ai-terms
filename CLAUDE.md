@@ -1,6 +1,6 @@
 # AI Terms Slide Deck
 
-Reveal.js 5 slide deck explaining 12 AI/tech terms in Danish, branded for Fruity AI.
+Reveal.js 5 slide deck explaining 12 AI/tech terms in English, branded for Fruity AI.
 
 ## Architecture
 

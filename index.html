@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forstå AI-sproget — Fruity AI</title>
+<title>AI Terminology Decoded — Fruity AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -24,21 +24,23 @@
 :root {
   --black:          #171B20;
   --text-primary:   #171B20;
-  --text-secondary: #656462;
+  --text-secondary: #44423F;
+  --text-on-dark:   #E8E6DE;
+  --text-on-dark-muted: #B8B5AC;
   --background:     #FFFFFF;
   --card:           #FFFFFF;
-  --card-02:        #DEDED5;
+  --card-02:        #E8E6DE;
   --accent:         #800080;
   --primary:        #171B20;
   --page-bg:        #FAF7F2;
   --light-card:     #F3EDE3;
-  --rule:           rgba(23,27,32,0.12);
+  --rule:           rgba(23,27,32,0.2);
   --danger-bg:      #FEE2E2;
-  --danger-text:    #991B1B;
-  --warning-bg:     #FEF9C3;
-  --warning-text:   #854D0E;
+  --danger-text:    #7F1D1D;
+  --warning-bg:     #FEF3C7;
+  --warning-text:   #6B3F0A;
   --success-bg:     #DCFCE7;
-  --success-text:   #166534;
+  --success-text:   #14532D;
   --gray-50:        #F9FAFB;
   --gray-100:       #F3F4F6;
   --gray-200:       #E5E7EB;
@@ -58,7 +60,7 @@
 /* 4. Slide types */
 .slide-dark { background-color: var(--black) !important; color: #FFFFFF; }
 .slide-dark[data-background-image] { background-color: transparent !important; }
-.slide-dark .eyebrow { color: var(--text-secondary); }
+.slide-dark .eyebrow { color: var(--text-on-dark-muted); }
 .slide-dark .term-title { color: #FFFFFF; }
 .slide-light { background: var(--page-bg) !important; color: var(--text-primary); }
 
@@ -101,11 +103,11 @@
 .flow-accent { background: var(--accent); color: #fff; }
 .flow-dark { background: var(--gray-700); color: #fff; }
 .flow-access { text-align: center; margin-top: 16px; }
-.flow-access-label { font-family: 'Fira Code', monospace; font-size: 12px; color: var(--text-secondary); letter-spacing: 0.1em; text-transform: uppercase; }
-.flow-access-items { font-family: 'Fira Code', monospace; font-size: 14px; color: var(--card-02); margin-top: 4px; }
+.flow-access-label { font-family: 'Fira Code', monospace; font-size: 12px; color: var(--text-on-dark-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+.flow-access-items { font-family: 'Fira Code', monospace; font-size: 14px; color: var(--text-on-dark); margin-top: 4px; }
 .flow-dashed { width: 2px; height: 24px; border-left: 2px dashed var(--accent); margin: 0 auto; }
-.summary-bar { background: rgba(31,41,55,0.85); padding: 20px 28px; margin-top: auto; }
-.summary-bar span { font-family: 'Karla', sans-serif; font-size: 16px; color: var(--card-02); line-height: 1.6; }
+.summary-bar { background: rgba(31,41,55,0.92); padding: 20px 28px; margin-top: auto; }
+.summary-bar span { font-family: 'Karla', sans-serif; font-size: 16px; color: var(--text-on-dark); line-height: 1.6; }
 
 /* 7. Confusion table */
 .confusion-grid { display: flex; flex-direction: column; gap: 8px; margin-top: 20px; }
@@ -128,21 +130,21 @@
 .icon-circle-black { background: var(--black); color: #fff; }
 .icon-circle-accent { background: var(--accent); color: #fff; }
 .accent-bar { width: 120px; height: 4px; background: var(--accent); margin-top: 20px; }
-.title-terms { font-family: 'Fira Code', monospace; font-size: 13px; color: var(--text-secondary); margin: 16px 0; }
-.title-subtitle { font-family: 'Karla', sans-serif; font-size: 18px; font-weight: 400; color: var(--card-02); max-width: 640px; line-height: 1.5; }
+.title-terms { font-family: 'Fira Code', monospace; font-size: 13px; color: var(--text-on-dark-muted); margin: 16px 0; }
+.title-subtitle { font-family: 'Karla', sans-serif; font-size: 18px; font-weight: 400; color: var(--text-on-dark); max-width: 640px; line-height: 1.5; }
 .title-heading { font-size: 64px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; color: #fff; }
-.slide-footer { font-family: 'Fira Code', monospace; font-size: 13px; color: var(--text-secondary); margin-top: 16px; }
+.slide-footer { font-family: 'Fira Code', monospace; font-size: 13px; color: var(--text-on-dark-muted); margin-top: 16px; }
 
 /* 9. Watermark & counter */
 .watermark { position: absolute; right: 40px; bottom: -20px; font-family: 'Karla', sans-serif; font-size: 260px; font-weight: 700; letter-spacing: -0.05em; line-height: 1; color: rgba(23,27,32,0.045); pointer-events: none; z-index: 0; user-select: none; }
-.slide-counter { position: absolute; top: 48px; right: 64px; font-family: 'Fira Code', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--text-secondary); opacity: 0.5; z-index: 1; }
-.slide-dark .slide-counter { color: var(--card-02); }
+.slide-counter { position: absolute; top: 48px; right: 64px; font-family: 'Fira Code', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--text-secondary); opacity: 0.85; z-index: 1; }
+.slide-dark .slide-counter { color: var(--text-on-dark); }
 
 /* 10. Section divider */
 .section-divider { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
 .section-divider .section-number { font-family: 'Fira Code', monospace; font-size: 18px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 20px; }
 .section-divider h2 { font-size: 72px; color: #fff; margin-bottom: 16px; }
-.section-divider .section-desc { font-family: 'Karla', sans-serif; font-size: 26px; color: var(--card-02); max-width: 700px; line-height: 1.5; }
+.section-divider .section-desc { font-family: 'Karla', sans-serif; font-size: 26px; color: var(--text-on-dark); max-width: 700px; line-height: 1.5; }
 
 @media print { .reveal .slides section { page-break-after: always; } }
 </style>

@@ -1,18 +1,18 @@
-# Forstå AI-sproget — Fruity AI
+# AI Terminology Decoded — Fruity AI
 
-Slide deck der forklarer 12 AI-termer på dansk med pixel-art illustrationer.
+Slide deck explaining 12 AI terms in English with pixel-art illustrations.
 
 **AI · LLM · Token · Prompt · Hallucination · Agent · RAG · Tool · Skills · MCP · API · CLI**
 
-## Se slides
+## View slides
 
 [fruity-ai.github.io/slides-ai-terms](https://fruity-ai.github.io/slides-ai-terms/)
 
-## Rediger indhold
+## Edit content
 
-Alt indhold ligger i `slides.json`. Redigér filen og push — GitHub Pages opdaterer automatisk.
+All content lives in `slides.json`. Edit the file and push — GitHub Pages updates automatically.
 
-## Lokal udvikling
+## Local development
 
 ```
 python3 -m http.server 8767
